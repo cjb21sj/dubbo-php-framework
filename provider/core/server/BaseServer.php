@@ -707,12 +707,12 @@ abstract class BaseServer implements IServer
 	                //在临死之前立刻将错误信息回传给consumer,避免consumer一直等待直到超时
 	                $local = FSOFSystemUtil::getServiceIP();
 	                $result = "error: {$this->processName}[{$local}]:".$message."in {$file}|{$line}";
-	                $this->sendFatelMessage($result,false,true);
+	                $this->sendFatalMessage($result,false,true);
 	        }
 	    }
 	}
 
-	public function sendFatelMessage($msg,$businessErr,$frameErr)
+	public function sendFatalMessage($msg,$businessErr,$frameErr)
 	{
         $this->logger->error('fd:'.$this->cur_fd.'|processName:'.$this->processName. ' send '.json_encode($msg));
 
